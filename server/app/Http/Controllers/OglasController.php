@@ -134,4 +134,13 @@ class OglasController extends OdgovorController
         ];
         return $this->uspesno($statusi, 'Moguci statusi oglasa.');
     }
+
+    public function paginateOglasi()
+    {
+        $poStrani = 5;
+
+        $oglasi = Oglas::with(['kompanija', 'tipOglasa', 'tagovi'])->paginate($poStrani);
+
+        return $this->uspesno($oglasi, 'Oglasi sa paginacijom.');
+    }
 }
