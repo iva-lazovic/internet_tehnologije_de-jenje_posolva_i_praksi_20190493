@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create(\App\Models\Oglas::TABLE, function (Blueprint $table) {
             $table->id();
             $table->string('naslov');
-            $table->binary('opis');
+            $table->text('opis');
             $table->unsignedBigInteger('kompanijaId');
             $table->foreign('kompanijaId')->references('id')->on(\App\Models\Kompanija::TABLE)->onDelete('cascade');
             $table->unsignedBigInteger('tipOglasaId');
