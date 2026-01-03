@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Naslov from "../komponente/Naslov";
 import {Button, Form} from "react-bootstrap";
 import server from "../logika/komunikacijaSaServerom";
+import useForm from "../logika/useForm";
 
 const Login = () => {
 
@@ -10,18 +11,11 @@ const Login = () => {
 
     const forma =  isLogin ? 'Prijava korisnika' : 'Registracija korisnika';
 
-    const [formData, setFormData] = useState({
+    const {formData, handleChange} = useForm({
+        name: '',
         email: '',
-        password: '',
-        name: ''
+        password: ''
     });
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    }
 
     const login = (e) => {
         e.preventDefault();
