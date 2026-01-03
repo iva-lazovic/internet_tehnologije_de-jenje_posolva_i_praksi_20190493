@@ -55,3 +55,7 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+.dugme:disabled {
+    background-color: #014391;
+    cursor: not-allowed;
+}

@@ -11,13 +11,13 @@ Route::get('/tip-oglasa', [App\Http\Controllers\TipoviOglasaController::class, '
 Route::get('/tip-oglasa/{id}', [App\Http\Controllers\TipoviOglasaController::class, 'show']);
 Route::get('/tagovi', [App\Http\Controllers\TagoviController::class, 'index']);
 Route::get('/statusi', [App\Http\Controllers\OglasController::class, 'statusi']);
+Route::get('/oglasi', [App\Http\Controllers\OglasController::class, 'index']);
+Route::get('/pretraga-tagovi/{tag}', [App\Http\Controllers\TagoviController::class, 'pretraziPoTagu']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [App\Http\Controllers\LoginController::class, 'logout']);
-    Route::get('/oglasi', [App\Http\Controllers\OglasController::class, 'index']);
     Route::get('/oglasi/{id}', [App\Http\Controllers\OglasController::class, 'show']);
-    Route::get('/pretraga-tagovi/{tag}', [App\Http\Controllers\TagoviController::class, 'pretraziPoTagu']);
     Route::get('/moje-prijave/{userId}', [App\Http\Controllers\PrijavaController::class, 'mojePrijave']);
     Route::get('/oglasi-kompanije/{kompanijaId}', [App\Http\Controllers\OglasController::class, 'pretraziPoKomapniji']);
     Route::get('/oglasi-tipa/{tipOglasaId}', [App\Http\Controllers\OglasController::class, 'pretraziPoTipuOglasa']);

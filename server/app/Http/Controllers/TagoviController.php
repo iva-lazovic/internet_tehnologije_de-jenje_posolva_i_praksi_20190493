@@ -11,6 +11,8 @@ class TagoviController extends OdgovorController
     public function index()
     {
         $sviTagovi = \App\Models\Tagovi::all();
+        //distinct tagovi
+        $sviTagovi = $sviTagovi->unique('tag')->values();
         return $this->uspesno(\App\Http\Resources\TagoviResurs::collection($sviTagovi));
     }
 
