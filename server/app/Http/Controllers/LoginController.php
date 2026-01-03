@@ -35,12 +35,12 @@ class LoginController extends OdgovorController
 
     public function registerStudent()
     {
-        $this->register('student');
+        return $this->register('student');
     }
 
     public function registerKompanija()
     {
-        $this->register('kompanija');
+        return $this->register('kompanija');
     }
 
     private function register($tipKorisnika = 'student')
