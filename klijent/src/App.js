@@ -19,17 +19,19 @@ function App() {
     <>
         <Navigacija />
         <Container>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/o-nama" element={<ONama />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/moje-prijave" element={<MojePrijave />} />
-                    <Route path="/novi-oglas" element={<NoviOglas />} />
-                    <Route path="/pretraga" element={<Pretraga />} />
-                    <Route path="/administracija" element={<Administracija />} />
-                </Routes>
-            </BrowserRouter>
+            <div className="glavni">
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/o-nama" element={<ONama />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/moje-prijave" element={<MojePrijave />} />
+                        <Route path="/novi-oglas" element={<NoviOglas />} />
+                        <Route path="/pretraga" element={<Pretraga />} />
+                        <Route path="/administracija" element={<Administracija />} />
+                    </Routes>
+                </BrowserRouter>
+            </div>
         </Container>
         <Footer />
     </>
