@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container, Image, Nav, Navbar} from "react-bootstrap";
 import logo from '../slike/logo-fixed.png';
+import server from "../logika/komunikacijaSaServerom";
 
 const Navigacija = () => {
 
@@ -9,6 +10,17 @@ const Navigacija = () => {
     const tipKorisnika = user ? user.tip_korisnika : null;
     const isAdmin = tipKorisnika === 'admin';
     const isAdminIliKompanija = tipKorisnika === 'admin' || tipKorisnika === 'kompanija';
+
+    const logout = (e) => {
+        e.preventDefault();
+        server.post('logout', {}).then(result => {
+            window.sessionStorage.removeItem('token');
+            window.sessionStorage.removeItem('user');
+            window.location.href = '/';
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 
     return (
         <>
@@ -22,7 +34,13 @@ const Navigacija = () => {
                             <Nav.Link href="/o-nama">O nama</Nav.Link>
                             <Nav.Link href="/pretraga">Pretraga</Nav.Link>
 
-                            <Nav.Link href="/login">Login</Nav.Link>
+                            {
+                                !token && (
+                                    <>
+                                        <Nav.Link href="/login">Login</Nav.Link>
+                                    </>
+                                )
+                            }
                             {
                                 isAdminIliKompanija && (
                                     <>
@@ -41,7 +59,7 @@ const Navigacija = () => {
                                 token && (
                                     <>
                                         <Nav.Link href="/moje-prijave">Moje prijave</Nav.Link>
-                                        <Nav.Link href="/logout">Logout</Nav.Link>
+                                        <Nav.Link href="/logout" onClick={logout}>Logout</Nav.Link>
                                     </>
                                 )
                             }
