@@ -31,7 +31,7 @@ class OglasController extends OdgovorController
             'opis' => 'required|string',
             'rokZaPrijavu' => 'required|date',
             'kompanijaId' => 'required|numeric|exists:kompanije,id',
-            'tipOglasaId' => 'required|numeric|exists:tip_oglasa,id',
+            'tipOglasaId' => 'required|numeric|exists:tipovi_oglasa,id',
             'tagovi' => 'array'
         ]);
 
@@ -43,8 +43,8 @@ class OglasController extends OdgovorController
             'naslov' => $request->naslov,
             'opis' => $request->opis,
             'rokZaPrijavu' => $request->rokZaPrijavu,
-            'kompanija_id' => $request->kompanijaId,
-            'tip_oglasa_id' => $request->tipOglasaId,
+            'kompanijaId' => $request->kompanijaId,
+            'tipOglasaId' => $request->tipOglasaId,
             'status' => Oglas::STATUS_DRAFT
         ]);
 
@@ -107,14 +107,21 @@ class OglasController extends OdgovorController
 
     public function grupisiPoStatusu(Request $request)
     {
-        $oglasi = DB::raw('SELECT status, COUNT(*) as broj_oglasa FROM oglasi GROUP BY status');
+        $oglasi = DB::table('oglasi')
+            ->select('status', DB::raw('COUNT(*) as broj_oglasa'))
+            ->groupBy('status')
+            ->get();
 
         return $this->uspesno($oglasi, 'Oglasi grupisani po statusu.');
     }
 
     public function grupisiPoTipuOglasa(Request $request)
     {
-        $oglasi = DB::raw('SELECT t.naziv, COUNT(*) as broj_oglasa FROM oglasi o JOIN tipovi_oglasa t ON o.tipOglasaId = t.id GROUP BY t.naziv');
+        $oglasi = DB::table('oglasi')
+            ->join('tipovi_oglasa', 'oglasi.tipOglasaId', '=', 'tipovi_oglasa.id')
+            ->select('tipovi_oglasa.naziv as tip_oglasa', DB::raw('COUNT(*) as broj_oglasa'))
+            ->groupBy('tipovi_oglasa.naziv')
+            ->get();
 
         return $this->uspesno($oglasi, 'Oglasi grupisani po tipu oglasa.');
     }
