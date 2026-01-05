@@ -41,4 +41,5 @@ Route::middleware(['auth:sanctum', 'role:admin'] )->group(function () {
     Route::post('/register-kompanija', [App\Http\Controllers\LoginController::class, 'registerKompanija']);
     Route::get('/grafikon-podaci-status', [App\Http\Controllers\OglasController::class, 'grupisiPoStatusu']);
     Route::get('/grafikon-podaci-tipovi', [App\Http\Controllers\OglasController::class, 'grupisiPoTipuOglasa']);
+    Route::get('/paginacija', [App\Http\Controllers\OglasController::class, 'paginateOglasi']);
 });
