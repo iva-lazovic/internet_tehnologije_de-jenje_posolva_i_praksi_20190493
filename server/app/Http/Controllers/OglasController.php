@@ -31,7 +31,7 @@ class OglasController extends OdgovorController
             'opis' => 'required|string',
             'rokZaPrijavu' => 'required|date',
             'kompanijaId' => 'required|numeric|exists:kompanije,id',
-            'tipOglasaId' => 'required|numeric|exists:tip_oglasa,id',
+            'tipOglasaId' => 'required|numeric|exists:tipovi_oglasa,id',
             'tagovi' => 'array'
         ]);
 
@@ -43,8 +43,8 @@ class OglasController extends OdgovorController
             'naslov' => $request->naslov,
             'opis' => $request->opis,
             'rokZaPrijavu' => $request->rokZaPrijavu,
-            'kompanija_id' => $request->kompanijaId,
-            'tip_oglasa_id' => $request->tipOglasaId,
+            'kompanijaId' => $request->kompanijaId,
+            'tipOglasaId' => $request->tipOglasaId,
             'status' => Oglas::STATUS_DRAFT
         ]);
 
