@@ -7,7 +7,7 @@ const Navigacija = () => {
 
     const token = window.sessionStorage.getItem('token');
     const user = token ? JSON.parse(window.sessionStorage.getItem('user')) : null;
-    const tipKorisnika = user ? user.tip_korisnika : null;
+    const tipKorisnika = user ? user.tipKorisnika : null;
     const isAdmin = tipKorisnika === 'admin';
     const isAdminIliKompanija = tipKorisnika === 'admin' || tipKorisnika === 'kompanija';
 
