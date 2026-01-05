@@ -27,7 +27,7 @@ class PrijavaController extends OdgovorController
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'userId' => 'required|numeric|exists:users,id',
             'oglasId' => 'required|numeric|exists:oglasi,id',
-            'cv' => 'required|file'
+            'cv' => 'file|max:2048'
         ]);
 
         if ($validator->fails()) {

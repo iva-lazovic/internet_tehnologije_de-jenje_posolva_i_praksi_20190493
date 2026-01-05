@@ -3,25 +3,29 @@ import PropTypes from 'prop-types';
 import {Card} from "react-bootstrap";
 
 const Oglas = props => {
-    const { naslov, opis, rok, kompanija, tip, tagovi } = props;
+    const { oglas, setIzabraniOglas } = props;
 
-    const kraciOpis = opis.length > 100 ? opis.substring(0, 100) + '...' : opis;
+    const kraciOpis = oglas.opis.length > 100 ? oglas.opis.substring(0, 100) + '...' : oglas.opis;
     return (
         <>
-            <Card style={{ width: '18rem' }} className="mt-4 mb-2">
+            <Card className="mt-4 mb-2">
                 <Card.Body>
-                    <Card.Title>{naslov}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{tip}</Card.Subtitle>
+                    <Card.Title>{oglas.naslov}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{oglas.tipOglasa.naziv}</Card.Subtitle>
                     <Card.Text dangerouslySetInnerHTML={{ __html: kraciOpis }}>
 
                     </Card.Text>
-                    <Card.Link href="#">{kompanija}</Card.Link>
-                    <Card.Link href="#">{rok}</Card.Link>
+                    <Card.Link href="#">{oglas.kompanija.naziv}</Card.Link>
+                    <Card.Link href="#">{oglas.rokZaPrijavu}</Card.Link>
                 </Card.Body>
                 <Card.Footer>
-                    {tagovi && tagovi.map((tag, index) => (
-                        <span key={index} className="badge bg-secondary me-1">{tag}</span>
+                    {oglas.tagovi && oglas.tagovi.map((tag, index) => (
+                        <span key={index} className="badge bg-secondary me-1">{tag.tag}</span>
                     ))}
+                    <hr/>
+                    <button type="button" className="dugme" onClick={
+                        () => setIzabraniOglas(oglas)
+                    }>Detaljnije</button>
                 </Card.Footer>
             </Card>
         </>
@@ -29,12 +33,8 @@ const Oglas = props => {
 };
 
 Oglas.propTypes = {
-    naslov: PropTypes.string.isRequired,
-    opis: PropTypes.string.isRequired,
-    rok: PropTypes.string.isRequired,
-    kompanija: PropTypes.string.isRequired,
-    tip: PropTypes.string.isRequired,
-    tagovi: PropTypes.array
+    oglas: PropTypes.object.isRequired,
+    setIzabraniOglas: PropTypes.func.isRequired
 };
 
 export default Oglas;
