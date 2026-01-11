@@ -9,8 +9,11 @@ const useForm = (podaci) => {
             [e.target.name]: e.target.value
         });
     }
+    const resetForm = () => {
+        setFormData(podaci);
+    }
 
-    return {formData, handleChange};
+    return {formData, handleChange, resetForm};
 }
 
 export default useForm;

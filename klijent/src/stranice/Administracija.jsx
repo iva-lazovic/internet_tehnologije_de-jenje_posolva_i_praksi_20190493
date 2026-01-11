@@ -15,7 +15,7 @@ const Administracija = () => {
     const [dugmici, setDugmici] = useState([]);
     const [link, setLink] = useState('paginacija');
 
-    const {formData, handleChange} = useForm({
+    const {formData, handleChange, resetForm} = useForm({
         name: '',
         email: '',
         password: ''
@@ -68,6 +68,7 @@ const Administracija = () => {
             console.log(result);
             const podaci = result.data;
             if (podaci.uspesno) {
+                resetForm();
                 setPoruka('Uspešno ste se registrovali kompaniju');
             } else {
                 setPoruka('Došlo je do greške prilikom registracije.');
@@ -112,17 +113,17 @@ const Administracija = () => {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Ime i prezime</Form.Label>
-                            <Form.Control type="text" name="name" onChange={handleChange} placeholder="Unesite ime i prezime" />
+                            <Form.Control type="text" name="name" onChange={handleChange} placeholder="Unesite ime i prezime" value={formData.name} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail2">
                             <Form.Label>Email adresa</Form.Label>
-                            <Form.Control type="email" name="email" onChange={handleChange} placeholder="Unesite email" />
+                            <Form.Control type="email" name="email" onChange={handleChange} placeholder="Unesite email" value={formData.email} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword2">
                             <Form.Label>Lozinka</Form.Label>
-                            <Form.Control type="password" name="password" onChange={handleChange} placeholder="Unesite lozinku" />
+                            <Form.Control type="password" name="password" onChange={handleChange} placeholder="Unesite lozinku" value={formData.password} />
                         </Form.Group>
                         <Button variant="primary" className="dugme" type="submit" onClick={registracija}>
                             Registruj se
