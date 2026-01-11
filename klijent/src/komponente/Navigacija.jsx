@@ -58,7 +58,11 @@ const Navigacija = () => {
                             {
                                 token && (
                                     <>
-                                        <Nav.Link href="/moje-prijave">Moje prijave</Nav.Link>
+                                        {
+                                            tipKorisnika === 'student' && (
+                                                <Nav.Link href="/moje-prijave">Moje prijave</Nav.Link>
+                                            )
+                                        }
                                         <Nav.Link href="/logout" onClick={logout}>Logout</Nav.Link>
                                     </>
                                 )
