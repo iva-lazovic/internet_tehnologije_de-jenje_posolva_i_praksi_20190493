@@ -122,7 +122,7 @@ const NoviOglas = () => {
                     e.preventDefault();
                     unesi();
                 }}>
-                    Prijavi se
+                    Kreiraj oglas
                 </Button>
             </Form>
 
