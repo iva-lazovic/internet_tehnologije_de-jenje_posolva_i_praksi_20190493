@@ -160,7 +160,7 @@ const Administracija = () => {
                                                 }).catch(err => {
                                                     console.log(err);
                                                 })
-                                            }}>Obriši Oglas</Button>
+                                            }}>Obrišddi Oglas</Button>
                                         </td>
                                     </tr>
                                 ))
